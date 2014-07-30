@@ -64,7 +64,7 @@
          * Private vars
          *
          */
-
+        
         _tmpID = '_' + new Date().getTime(),
         _isIE7 = (document.all && !window.opera && window.XMLHttpRequest) ? true : false,
         _browserPrefixes = ' -webkit- -moz- -o- -ms- '.split(' '),
@@ -309,9 +309,10 @@
             var $imageWrapper = $(tmpImageWrapper),
               $img = $imageWrapper.find('img');
             // this image got already converted
-            if ($img.data('_b&w')) {
+            if ($img.hasClass('BWFilter')) {
               return;
             }
+            //$img.data('_b&w','1');
             // if this image is not loaded yet
             if (!_isImageLoaded($img[0])) {
               $img.on('load', function () {
@@ -335,9 +336,9 @@
 
           _initWebworker(imagesToLoadlength);
 
-          if ($el.data('_b&w')) {
+          /*if ($el.data('_b&w')) {
             return;
-          }
+          }*/
           // binding the hover effect
           if (hoverEffect) {
             $el.on('mouseleave.' + _tmpID, _onMouseLeave);
@@ -346,7 +347,7 @@
           if (_supportsCanvas && !_cssfilters) {
             $window.on('resize.' + _tmpID + ' orientationchange.' + _tmpID, _resizeCanvases);
           }
-          $el.data('_b&w', true);
+          //$el.data('_b&w', true);
         };
 
       /**
